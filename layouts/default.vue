@@ -1,93 +1,117 @@
 <template>
-  <div>
-    <app-nav />
-    <nuxt />
-  </div>
+  <v-app>
+    <Contact v-model="dialog" />
+    <v-app-bar
+      :class="{ change_color: scrollPosition > 50 }"
+      fixed
+      app
+      style="z-index: 50000"
+    >
+      <v-tabs align-with-title>
+        <v-tab to="/"
+          ><img src="~/assets/LOGO-AMC2-header.png" alt="logo" />
+        </v-tab>
+        <v-tab
+          v-for="(item, i) in items"
+          :key="i"
+          :to="item.to"
+          primary--text
+          router
+          exact
+          v-text="item.title"
+        ></v-tab>
+      </v-tabs>
+      <v-spacer></v-spacer>
+      <v-btn elevation="2" outlined color="primary" @click.stop="dialog = true"
+        >Contact</v-btn
+      >
+    </v-app-bar>
+    <v-main>
+      <v-container fluid>
+        <nuxt />
+      </v-container>
+    </v-main>
+    <v-footer>
+      <span>&copy; {{ new Date().getFullYear() }}</span>
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
-import AppNav from "~/components/AppNav.vue";
+// import AppNav from "~/components/AppNav.vue";
+import Contact from '~/components/Contact.vue'
 
 export default {
   components: {
-    AppNav
-  }
+    // AppNav,
+    Contact,
+  },
+  data() {
+    return {
+      scrollPosition: null,
+      drawer: false,
+      fixed: false,
+      dialog: false,
+      items: [
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Entreprise',
+          to: '/amc2-entreprise',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Nos machines',
+          to: '/machines',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Vos produits',
+          to: '/produits',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Actualité',
+          to: '/actualite',
+        },
+      ],
+    }
+  },
 };
 </script>
 
 <style>
-html {
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+html,
+#app {
+  font-family: neue-haas-unica, sans-serif;
 }
-
-body {
-  background-color: #fff;
+.v-app-bar .v-tab,
+.theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) {
+  font-family: neue-haas-unica, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #00579e;
 }
-
-h1,
-h2,
-h3 {
-  font-family: "Alata", serif;
-  font-weight: normal;
+button {
+  font-family: neue-haas-unica, sans-serif;
 }
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
+.container {
+  width: 100vw;
+  padding: 0;
 }
-
-.individual h3 {
-  margin: 2em 0 25px;
+/* .change_color {
+  background-color: red !important;
+  transition: background-color 2000ms linear;
+} */
+h2 {
+  font-weight: 800;
+  font-size: 2.75vw;
+  line-height: 1.1;
 }
-
-h1 {
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-img {
-  width: 100%;
-}
-
-video {
-  width: 100%;
-  margin: 25px 0;
-}
-
-small {
-  color: #9d5615;
-}
-
-pre,
-code {
-  white-space: pre-wrap; /* css-3 */
-  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
-  white-space: -pre-wrap; /* Opera 4-6 */
-  white-space: -o-pre-wrap; /* Opera 7 */
-  word-wrap: break-word; /* Internet Explorer 5.5+ */
-  background: #eee;
-  border-radius: 4px;
-}
-
-pre {
-  padding: 8px 10px;
-}
-
-code {
-  padding: 2px 0;
-  line-height: 1.5;
-}
-
 p {
-  margin: 15px 0 20px;
+  font-weight: 200;
+}
+.monBoutonBlanc {
+  background-color: white;
+  border: 1px #00579e;
 }
 </style>

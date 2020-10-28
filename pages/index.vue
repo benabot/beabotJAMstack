@@ -1,43 +1,176 @@
 <template>
-  <div>
-    <app-masthead></app-masthead>
-    <div class="posts">
-      <main>
-        <div class="post" v-for="post in sortedPosts" :key="post.id">
-          <h3>
-            <a :href="`blog/${post.slug}`">{{ post.title.rendered }}</a>
-          </h3>
-          <small>{{ post.date | dateformat }}</small>
-          <div v-html="post.excerpt.rendered"></div>
-          <a :href="`blog/${post.slug}`" class="readmore slide">Read more ⟶</a>
+  <v-container fluid>
+    <Header />
+    <div id="principal">
+      <section>
+        <div class="over-section1">
+          <img class="carton" src="/carton.svg" alt="caton" />
+          <svg
+            id="Calque_1"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="100%"
+            height="100%"
+            viewBox="0 0 100 100"
+            xml:space="preserve"
+          >
+            <g>
+              <line class="st0 ligne1" x1="50%" y1="0%" x2="50%" y2="10%" />
+              <line class="st0 ligne2" x1="111%" y1="10%" x2="50%" y2="10%" />
+              <line class="st0 ligne3" x1="111%" y1="10%" x2="111%" y2="100%" />
+            </g>
+          </svg>
         </div>
-      </main>
-      <aside>
-        <h2 class="tags-title">Tags</h2>
-        <div class="tags-list">
-          <ul>
-            <li
-              @click="updateTag(tag)"
-              v-for="tag in tags"
-              :key="tag.id"
-              :class="[tag.id === selectedTag ? activeClass : '']"
+        <v-container>
+          <v-row class="mb-8" no-gutters>
+            <v-col md="3" offset-md="2">
+              <h2 class="primary--text titre2">AMC2 industrie</h2>
+            </v-col>
+          </v-row>
+          <v-row class="mb-6" no-gutters>
+            <v-col md="12" offset-md="3">
+              <p>
+                Montana is a western state defined by its diverse terrain
+                ranging from the Rocky Mountains to the Great Plains. Its
+                wide-open spaces include Glacier National Park, a vast
+                wilderness preserve that passes into Canada. The park’s many
+                snow-capped peaks, lakes and alpine hiking trails are showcased
+                along its famed Going-to-the-Sun Road, stretching 50 miles.
+              </p>
+              <p>
+                Montana is a western state defined by its diverse terrain
+                ranging from the Rocky Mountains to the Great Plains. Its
+                wide-open spaces include Glacier National Park, a vast
+                wilderness preserve that passes into Canada. The park’s many
+                snow-capped peaks, lakes and alpine hiking trails are showcased
+                along its famed Going-to-the-Sun Road, stretching 50 miles.
+              </p>
+            </v-col>
+          </v-row>
+          <v-row class="mb-12" align="center" justify="center">
+            <v-btn
+              class=""
+              elevation="4"
+              large
+              outlined
+              color="primary"
+              href="/amc2-entreprise"
+              >Notre ADN</v-btn
             >
-              <a>{{ tag.name }}</a>
-              <span v-if="tag.id === selectedTag">✕</span>
-            </li>
-          </ul>
-        </div>
-      </aside>
+          </v-row>
+        </v-container>
+      </section>
+      <section id="solutions">
+        <v-container>
+          <v-row class="mb-14 mt-11" align="center" justify="center">
+            <h2 class="white--text titre3">AMC2 : solutions</h2>
+          </v-row>
+          <v-row class="mb-8" no-gutters>
+            <v-col md="5" offset-md="1">
+              <v-card class="carteMachine1" elevation="6" outlined>
+                <v-row>
+                  <v-col md="8">
+                    <v-card-title>Nos machines</v-card-title>
+                    <v-card-text>
+                      Montana is a western state defined by its diverse terrain
+                      ranging from the Rocky Mountains to the Great Plains. Its
+                      wide-open spaces include Glacier National Park.
+                    </v-card-text>
+                  </v-col>
+                  <v-col class="machine" md="4">
+                    <v-img src="/Etuyeuse-amc2.png" contain></v-img>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-col>
+          </v-row>
+          <v-row class="mb-14" no-gutters>
+            <v-col md="5" offset-md="6">
+              <v-card class="carteMachine2" elevation="5" outlined>
+                <v-row>
+                  <v-col md="8">
+                    <v-card-title>Vos produits</v-card-title>
+                    <v-card-text>
+                      Montana is a western state defined by its diverse terrain
+                      ranging from the Rocky Mountains to the Great Plains. Its
+                      wide-open spaces include Glacier National Park.
+                    </v-card-text>
+                  </v-col>
+                  <v-col class="machine" md="4">
+                    <v-img src="/AMC2_Verre.png" contain></v-img>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-col>
+          </v-row>
+          <v-row class="mb-12" align="center" justify="center">
+            <v-btn
+              class="monBoutonBlanc"
+              elevation="4"
+              large
+              outlined
+              color="primary"
+              href="/machines"
+              >Découvrir nos solutions</v-btn
+            >
+          </v-row>
+        </v-container>
+      </section>
+      <section>
+        <v-container>
+          <v-row class="mb-14 mt-11" align="center" justify="center">
+            <h2 class="primary--text titre4">AMC2 : actualité</h2>
+          </v-row>
+          <v-divider></v-divider>
+          <v-row v-for="post in posts" :key="post.id" class="article post">
+            <v-col
+              class="d-flex align-content-center flex-wrap mt-0 pt-0"
+              cols="3"
+              md-3
+              ><v-img
+                lazy-src="https://picsum.photos/id/11/10/6"
+                contain
+                src="https://picsum.photos/id/11/500/300"
+              ></v-img
+            ></v-col>
+            <v-col class="mt-0 pt-0" cols="9" md-9>
+              <v-row>
+                <v-col
+                  ><h3>
+                    {{ post.title.rendered }}
+                  </h3></v-col
+                >
+                <v-col
+                  ><small class="date">{{ post.date }}</small></v-col
+                >
+              </v-row>
+              <v-row class="d-flex align-content-end flex-wrap">
+                <v-col cols="10" md-10
+                  ><p v-html="post.excerpt.rendered"></p
+                ></v-col>
+                <v-col class="d-flex align-content-end flex-wrap" cols="2" md-2
+                  ><a :href="`blog/${post.slug}`" class="readmore"
+                    ><v-icon class="mb-4">mdi-arrow-right</v-icon></a
+                  ></v-col
+                >
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-container>
+      </section>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
-import AppMasthead from "@/components/AppMasthead.vue";
+// import AppMasthead from "@/components/AppMasthead.vue";
+import Header from '~/components/Header.vue'
 
 export default {
   components: {
-    AppMasthead
+   // AppMasthead,
+    Header,
   },
   data() {
     return {
@@ -73,138 +206,108 @@ export default {
 </script>
 
 <style lang="scss">
-.posts {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr;
-  grid-column-gap: 6vw;
-  margin: 5em auto;
-  max-width: 80vw;
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
 }
 
-main {
-  grid-area: 1 / 1 / 2 / 2;
+html {
+  font-family: neue-haas-unica, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  // font-size: 150%;
+  line-height: 1.4;
 }
 
-aside {
-  grid-area: 1 / 2 / 2 / 3;
+body {
+  margin: 0;
 }
 
-h2 {
-  margin-bottom: 2em;
-}
-
-a,
-a:active,
-a:visited {
-  text-decoration: none;
-  color: black;
-}
-
-a.readmore {
-  display: inline-block;
-  font-size: 11px;
-  text-transform: uppercase;
-  padding: 5px 15px;
-  letter-spacing: 2px;
+#principal {
+  background: white;
   position: relative;
-  color: #000;
-  font-weight: 700;
-  font-family: "Open Sans", serif;
-  border: 1px solid #ccc;
-  background: #fff;
+  padding-top: 1rem;
+  margin-top: 90vh;
+  z-index: 11;
 }
 
-.tags-title {
-  background-color: #000;
-  color: #fff;
-  border: none;
-  text-transform: capitalize;
-  letter-spacing: 0;
-  font-size: 1.2rem;
-  padding: 15px;
-  margin: 0 35px;
-  position: relative;
-  top: -25px;
-}
-
-.tags-list {
-  background: #f5f5f5;
-  padding: 70px 25px 25px;
-  margin-top: -65px;
-}
-
-.post {
-  border-bottom: 1px solid rgb(223, 222, 222);
-  margin-bottom: 2em;
-  padding-bottom: 2em;
-  color: #444;
-
-  h3 {
-    margin-bottom: 0.5em;
-    font-size: 26px;
-  }
-}
-
-.tags-list ul {
-  padding-left: 0;
-}
-
-.tags-list li {
-  font-family: "Open Sans", serif;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 6px 15px;
-  margin: 0 0 10px 10px;
-  display: inline-block;
-  font-size: 0.7rem !important;
-  border: 1px solid #000;
-  transition: all 0.3s;
-  outline: none;
-  font-weight: normal;
-  cursor: pointer;
-  background: #fff;
-  a {
-    color: #000;
-  }
-}
-
-.active {
-  border: 1px solid #d44119;
-  background-color: #fae091 !important;
-}
-
-.slide {
-  position: relative;
-  background: transparent;
-  -webkit-transition: 0.3s ease;
-  transition: 0.3s ease;
-  z-index: 1;
-  backface-visibility: hidden;
-  perspective: 1000px;
-  transform: translateZ(0);
-  cursor: pointer;
-
-  &:hover {
-    color: #fff;
-  }
-
-  &:hover:before {
-    right: -1px;
-  }
-}
-
-.slide::before {
-  content: "";
-  display: block;
+#principal::before {
+  content: '';
+  width: 100vw;
+  height: 100vh;
   position: absolute;
-  background: #000;
-  transition: right 0.3s ease;
-  z-index: -1;
-  top: -2px;
-  bottom: -2px;
-  left: -2px;
-  right: 108%;
-  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+  top: -100vh;
+}
+
+#principal p {
+  max-width: 600px;
+}
+
+#principal section {
+  width: 100vw;
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#principal section:nth-child(even) {
+  background: rgb(2, 118, 185);
+  background: linear-gradient(
+    115deg,
+    rgba(2, 118, 185, 1) 0%,
+    rgba(2, 99, 167, 1) 39%,
+    rgba(0, 87, 158, 1) 100%
+  );
+  color: white;
+}
+#principal section:nth-child(2) {
+  background: url('/AMC2_top-load-BLANC.svg'),
+    linear-gradient(
+      115deg,
+      rgba(2, 118, 185, 1) 0%,
+      rgba(2, 99, 167, 1) 39%,
+      rgba(0, 87, 158, 1) 100%
+    );
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-blend-mode: overlay;
+}
+.over-section1 {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.carton {
+  width: 23%;
+  position: absolute;
+  right: 0;
+  top: 15%;
+  opacity: 0.2;
+}
+.st0 {
+  fill: none;
+  stroke: #7c7c7b;
+  stroke-width: 0.05;
+}
+.machine {
+  display: flex;
+  justify-content: center;
+}
+h3,
+small {
+  color: #757575;
+}
+.article {
+  border-top-width: 0.6px;
+  border-top-style: solid;
+  padding-top: 0.694444444444444vw;
 }
 </style>

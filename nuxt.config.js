@@ -30,7 +30,7 @@ export default {
       {
         rel: "stylesheet",
         href:
-          "https://fonts.googleapis.com/css?family=Alata|Open+Sans&display=swap"
+          "https://use.typekit.net/fpw0lar.css'"
       }
     ]
   },
@@ -56,7 +56,27 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [],
+  buildModules: [
+    '@nuxtjs/vuetify',
+  ],
+    // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
+    vuetify: {
+      customVariables: ['~/assets/variables.scss'],
+      theme: {
+        light: true,
+        themes: {
+          light: {
+            primary: '#00579E', // a color that is not in the default material colors palette
+            accent: '#235fa0',
+            secondary: '#208495',
+            info: '#1976D2',
+            error: '#FF5252',
+            success: '#4CAF50',
+            warning: '#FFC107',
+          },
+        },
+      },
+    },
   /*
    ** Build configuration
    */

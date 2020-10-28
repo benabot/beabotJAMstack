@@ -1,0 +1,8 @@
+// Ref: https://github.com/nuxt-community/vuetify-module#customvariables
+//
+// The variables you want to modify
+// $font-size-root: 20px;
+@import url('https://use.typekit.net/fpw0lar.css');
+$body-font-family: 'neue-haas-unica', sans-serif;
+$heading-font-family: $body-font-family;
+$nav-font-family: $body-font-family;
