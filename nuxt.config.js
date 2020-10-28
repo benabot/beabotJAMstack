@@ -10,7 +10,8 @@ let dynamicRoutes = () => {
 }
 
 export default {
-  mode: "universal",
+   // Target (https://go.nuxtjs.dev/config-target)
+   target: 'static',
   /*
    ** Headers of the page
    */
